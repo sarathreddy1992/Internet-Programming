@@ -1,0 +1,57 @@
+						InterNet Programming (CSE 686)
+					----------------------------------------------------
+							Assignment #1
+					     --------------------------------------
+
+Based on the echo server client example in the textbook the network communication between the client and the server
+works well when there is only one client.
+
+Exceeding maximum file size for the server
+------------------------------------------------------
+In a socket connection if the size of the input byte stream is greater than 64 bytes. 
+
+Solution
+------------------------------------------------------
+When the size of the byte stream which needs to be sent over exceeds the limit i.e 64bytes
+then the server will close that socket and wait for a new connection to be established.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------
+Client sending the same message
+------------------------------------------------------
+
+Bad Client
+------------------------------------------------------
+If the client is sending the same message again and again and causing difficulties for the other client to process their messages
+
+Solution
+------------------------------------------------------
+We can create a flag in the server and check if the same message has been sent to the server if the same message has been sent to the 
+server then just close the socket connection for that client.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------
+Concurrent request handling by the server
+------------------------------------------------------
+
+Bad Client
+---------------------
+When the  data in the form of bytes which needs to be sent to the server is limited, that is small, then the echoing of the
+information occurs in a real time way without causing any disturbances to the other clients. If there are more than one client in the 
+system and the size of the data to be transfered is high then the wait time of other clients also increases and this causes 
+slow process time of the total client requests.
+
+Solution 
+-----------------------
+This can be eliminated by making a multiple copies of the client socket in the server which can handle multtiple requests 
+at a time. The multiple copies of the client socket can be implemented using threads where we can create a new thread whenever 
+a request comes from a newly created client and this thread takes care of the new echo message that arrives by creating a new socket 
+that works at that same port and echoes all the commands concurrently.
+------------------------------------------------------------------------------------------------------------------------------------------------------
